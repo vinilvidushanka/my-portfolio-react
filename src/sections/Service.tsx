@@ -1,0 +1,64 @@
+import { motion } from "framer-motion"
+import { FaCode, FaPaintBrush, FaServer, FaLaptopCode } from "react-icons/fa"
+
+const services = [
+    {
+        title: "Web Development",
+        description: "Building responsive and modern websites using React, TypeScript & Tailwind.",
+        icon: FaCode,
+    },
+    {
+        title: "UI/UX Design",
+        description: "Designing clean and user-friendly interfaces for web applications.",
+        icon: FaPaintBrush,
+    },
+    {
+        title: "Backend Development",
+        description: "Creating robust APIs and server-side logic with Node.js & Express.",
+        icon: FaServer,
+    },
+    {
+        title: "Front-End Development",
+        description: "Specializing in building interactive UI with React, TailwindCSS, and modern JavaScript.",
+        icon: FaLaptopCode,
+    },
+]
+
+const Service = () => {
+    return (
+        <section id="services" className="min-h-screen flex flex-col items-center bg-gray-900 px-6 py-20 relative">
+            {/* Decorative background circles */}
+            <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-500 rounded-full opacity-20 blur-3xl"></div>
+            <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-teal-400 rounded-full opacity-20 blur-3xl"></div>
+
+            <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-12 text-center">My Services</h2>
+
+            <div className="grid md:grid-cols-2 gap-6 w-full max-w-4xl">
+                {services.map((service, i) => {
+                    const Icon = service.icon
+                    return (
+                        <motion.div
+                            key={service.title}
+                            className="p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 to-teal-400 cursor-pointer"
+                            initial={{ opacity: 0, y: 40, scale: 0.9 }}
+                            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                            whileHover={{ scale: 1.05, y: -5, boxShadow: "0 15px 25px rgba(0,0,0,0.3)" }}
+                            viewport={{ once: true, amount: 0.3 }}
+                            transition={{ duration: 0.5, delay: i * 0.2, type: "spring", stiffness: 100 }}
+                        >
+                            {/* Icon with circular background */}
+                            <div className="flex items-center justify-center w-20 h-20 mb-4 rounded-full bg-white/20 backdrop-blur-sm">
+                                <Icon className="text-white text-4xl" />
+                            </div>
+
+                            <h3 className="text-xl font-semibold mb-2 text-white text-center">{service.title}</h3>
+                            <p className="text-center text-gray-100 text-sm">{service.description}</p>
+                        </motion.div>
+                    )
+                })}
+            </div>
+        </section>
+    )
+}
+
+export default Service
